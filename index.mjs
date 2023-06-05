@@ -11,14 +11,23 @@ bot.on(/\/start (.+)/, (msg, match) => {
     .then((data) => {
       // filter services with valid=true
       const validServices = data.services.filter((element) => element.valid);
-      const services = validServices.map((element) => element.id);
-      const servicesText = services.join(", ");
+
+      let servicesText = validServices.map((element) => {
+        buses = element.buses.map((bus) => {
+          return `${bus.meters_distance} Metros. Entre ${bus.min_arrival_time} y ${bus.max_arrival_time}  minutos \n`;
+        });
+        return `Servicio ${element.id}: 
+
+        ${buses}`;
+      });
+      // construir un string con los servicios y sus atributos
+      validServices.forEach((element) => {});
 
       bot.sendMessage(
         msg.chat.id,
         `Hola ${msg.chat.first_name}!\n
         Este es el resumen de los recorridos para ${data.name}:\n
-        ${servicesText}
+        ${serviceText}
         `
       );
     })
