@@ -14,14 +14,14 @@ bot.on(/\/start (.+)/, (msg, match) => {
 
       let servicesText = validServices.map((element) => {
         let buses = element.buses.map((bus) => {
-          return `${bus.meters_distance} Metros. Entre ${bus.min_arrival_time} y ${bus.max_arrival_time}  minutos \n`;
+          return `$ A ${bus.meters_distance} mts de distancia.\n 
+                    Llega entre ${bus.min_arrival_time} y ${bus.max_arrival_time} minutos \n`;
         });
         return `Servicio ${element.id}: 
 
-        ${buses}`;
+        ${buses} \n`;
       });
-      // construir un string con los servicios y sus atributos
-      validServices.forEach((element) => {});
+
       console.log(servicesText);
       bot.sendMessage(
         msg.chat.id,
