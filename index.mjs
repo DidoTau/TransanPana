@@ -12,15 +12,19 @@ bot.on(/\/start (.+)/, (msg, match) => {
       // filter services with valid=true
       const validServices = data.services.filter((element) => element.valid);
 
-      let servicesText = validServices.map((element) => {
-        let buses = element.buses.map((bus) => {
-          return `$ A ${bus.meters_distance} mts de distancia.\n 
+      let servicesText = validServices
+        .map((element) => {
+          let buses = element.buses
+            .map((bus) => {
+              return `A ${bus.meters_distance} mts de distancia.\n 
                     Llega entre ${bus.min_arrival_time} y ${bus.max_arrival_time} minutos \n`;
-        });
-        return `Servicio ${element.id}: 
+            })
+            .join("");
+          return `Servicio ${element.id}: 
 
         ${buses} \n`;
-      });
+        })
+        .join("");
 
       console.log(servicesText);
       bot.sendMessage(
