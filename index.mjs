@@ -1,8 +1,10 @@
 import Telebot from "telebot";
-
+import "dotenv/config";
 import fetch from "node-fetch";
 
-const bot = new Telebot("5819225779:AAHc88mQ6HZMu10hnokIHdsqVbtD-tztAAg");
+const telegramToken = process.env.TELEGRAM_TOKEN;
+
+const bot = new Telebot(telegramToken);
 
 bot.on(/\/start (.+)/, (msg, match) => {
   console.log(match);
