@@ -13,8 +13,14 @@ const bot = new Telebot({
 
 // CONECTING TO BBDD IN MONGO USING MONGOOSE
 
-await mongoose.connect("mongodb://127.0.0.1:27017/API");
-console.log("Database ONLINE");
+await mongoose
+  .connect("mongodb://mongo/API-TELEGRAM")
+  .then(() => {
+    console.log("Database connected");
+  })
+  .catch((error) => {
+    console.error("Error connecting to database:", error);
+  });
 
 // SCHEMA FOR FAVORITES
 const favoritesScheme = new mongoose.Schema({
